@@ -1,21 +1,15 @@
 import React from "react";
 import s from './navbar.module.css';
+import {NavLink} from "react-router-dom";
+import NavItem from "./NavItem/navitem";
 
-const Nav = () => {
+
+const Nav = (props) => {
+
+    let sidebarElements = props.sidebarElem.map( (sidebarEl) => <NavItem name={sidebarEl.name} adress={sidebarEl.adress}/>)
     return(
         <nav className={s.nav}>
-            <div>
-                <a className={`${s.item} ${s.active}`} href="">Profile</a>
-            </div>
-            <div>
-                <a className={s.item} href="">Messages</a>
-            </div>
-            <div>
-                <a className={s.item} href="">Music</a>
-            </div>
-            <div>
-                <a className={s.item} href="">Settings</a>
-            </div>
+            {sidebarElements}
         </nav>
     )
 }

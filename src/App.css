@@ -16,4 +16,12 @@ ul li{
 
 
 
+.app_wrapper-content {
+  grid-area: c;
+  background-color:aquamarine;
+  margin: 10px;
+}
 
+a.active{
+  color: gold!important;
+}
