@@ -3,22 +3,27 @@ import ReactDOM from "react-dom/client";
 import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import store  from "./redux/state";
+import store from "./redux/redux.store";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
- let rerenderEntireTree = (state) =>{
+ export let rerenderEntireTree = () =>{
 
     root.render(
         <BrowserRouter>
             <React.StrictMode>
-                <App state={state} dispatch={store.dispatch.bind(store)} newPostText={state.profilePage.newPostText} profilePage={state.profilePage} />
+                <Provider store={store}>
+                    <App state={store.getState()}/>
+                </Provider>
             </React.StrictMode>
         </BrowserRouter>
     );
-}
-rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+}
+rerenderEntireTree();
+
+store.subscribe(() => {
+    rerenderEntireTree();
+});
 
 reportWebVitals();

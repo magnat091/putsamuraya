@@ -3,20 +3,20 @@ import './App.css';
 import Header from './components/Header/header'
 import Nav from "./components/Nav/navbar";
 import Profile from "./components/Profile/profile";
-import Dialogs from "./components/Dialogs/dialogs";
-import {Routes, BrowserRouter, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Musics from "./components/Musics/musics";
 import Settings from "./components/Settings/settings";
+import DialogsContainer from "./components/Dialogs/dialogsContainer";
 
 const App = (props) => {
     return (
         <div className={'app_wrapper'}>
             <Header />
-            <Nav sidebarElem = {props.state.sidebarPage.sidebarData}/>
+            <Nav state={props.state}/>
             <div className={'app_wrapper-content'}>
                 <Routes>
-                    <Route path="/profile" element = {<Profile posts = {props.profilePage.posts} dispatch={props.dispatch} newPostText={props.newPostText} updateNewPostText={props.dispatch} />}/>
-                    <Route exact path="/dialogs" element = {<Dialogs dialogsData = {props.profilePage.dialogsData} messagesData = {props.state.messagesPage.messagesData} dispatch={props.dispatch} />}/>
+                    <Route path="/profile" element = {<Profile/>}/>
+                    <Route exact path="/dialogs" element = {<DialogsContainer/>}/>
                     <Route path="/musics" element = {<Musics />}/>
                     <Route path="/settings" element = {<Settings />}/>
                 </Routes>
